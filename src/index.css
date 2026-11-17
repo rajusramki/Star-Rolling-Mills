@@ -1,0 +1,216 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/inter';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: #f1f2f3;
+    --white: #ffffff;
+    --ink: #111111;
+    --accent: #e7472e;
+    --accent-dark: #c93a23;
+    --line: #dcdddf;
+    --body: #333333;
+    --muted: #666666;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-paper font-sans text-body antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold text-ink;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  img {
+    @apply select-none;
+  }
+}
+
+@layer components {
+  /* Consistent Global Grid Container */
+  .shell {
+    @apply mx-auto w-full max-w-[1540px] px-4 sm:px-6 lg:px-10 xl:px-12;
+  }
+
+  /* Typography Utilities */
+  .label {
+    @apply font-mono text-[9.5px] font-medium uppercase leading-none tracking-[0.22em] text-muted;
+  }
+
+  .label-ink {
+    @apply label text-ink;
+  }
+
+  .display {
+    @apply font-display font-semibold uppercase leading-[0.88] tracking-[-0.045em] text-ink;
+  }
+
+  /* Industrial Action Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 px-5 py-3.5 font-mono text-[10px] font-medium uppercase leading-none tracking-[0.16em] transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply bg-ink text-white hover:bg-accent focus-visible:outline-accent;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accentDark focus-visible:outline-ink;
+  }
+
+  .btn-outline {
+    @apply border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-white;
+  }
+
+  .btn-white-outline {
+    @apply border border-white/40 text-white hover:border-white hover:bg-white hover:text-ink;
+  }
+
+  /* Monochrome Industrial Photography */
+  .img-cover {
+    @apply h-full w-full object-cover;
+    filter: grayscale(1) contrast(1.06) brightness(0.96);
+  }
+
+  .hairline {
+    border-color: var(--line);
+  }
+
+  /* Subtle Technical Grids */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(17, 17, 17, 0.16) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dot-grid-light {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Image Hover Motion */
+  .media-zoom img {
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .media-zoom:hover img,
+  .group:hover .media-zoom img {
+    transform: scale(1.035);
+  }
+
+  /* Header Navigation */
+  .nav-link {
+    @apply relative py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-ink/75 transition-colors duration-300 hover:text-ink;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-accent transition-transform duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[data-active='true']::after {
+    @apply scale-x-100;
+  }
+
+  .nav-link[data-active='true'] {
+    @apply text-ink;
+  }
+
+  /* Form Elements */
+  .field-label {
+    @apply mb-1.5 block font-mono text-[9.5px] font-medium uppercase tracking-[0.18em] text-ink/70;
+  }
+
+  .field-input {
+    @apply w-full border-0 border-b border-ink/25 bg-transparent px-0 pb-2 pt-1 font-sans text-[14px] text-ink outline-none transition-colors duration-200 placeholder:text-ink/35 focus:border-accent focus:ring-0;
+  }
+
+  .field-select {
+    @apply field-input cursor-pointer appearance-none pr-8;
+  }
+
+  .field-error {
+    @apply mt-1.5 font-mono text-[9.5px] uppercase tracking-[0.08em] text-accent;
+  }
+
+  .index-number {
+    @apply font-mono text-[9.5px] font-medium tracking-[0.14em] text-muted;
+  }
+
+  /* Editorial Link */
+  .editorial-link {
+    @apply inline-flex items-center gap-2.5 font-mono text-[9.5px] font-medium uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:text-accent;
+  }
+
+  .editorial-link .arrow {
+    @apply transition-transform duration-300 group-hover:translate-x-1;
+  }
+
+  /* Tightened Section Spacing */
+  .section-pad {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-[200] -translate-y-24 bg-ink px-4 py-2.5 font-mono text-[9.5px] uppercase tracking-[0.18em] text-white transition-transform duration-200 focus:translate-y-0;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
